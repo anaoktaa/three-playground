@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.webgl {
+  position: fixed;
+  left: 0;
+  top: 0;
+  outline: none;
+}
+
+.container {
+  padding: 32px 16px;
+  margin: 0 0 8px;
+}
+
+.container h1 {
+  padding: 0 0 16px;
+}
+
+.container a {
+  padding: 0 0 8px;
+  display: block;
+}

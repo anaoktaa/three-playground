@@ -3,10 +3,24 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
 const path = require('path')
 
+
+const htmlPageNames = ['basic', 'meshbasic', 'meshnormal', 'meshstandard'].map(
+    (file) =>
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, `../src/${file}.html`),
+        minify: true,
+        chunks: [file],
+        filename: './' + file + '.html'
+      })
+);
+
+
 module.exports = {
     entry: {
         basic: path.resolve(__dirname, '../src/basic.js'),
-        material: path.resolve(__dirname, '../src/material.js'),
+        meshbasic: path.resolve(__dirname, '../src/meshbasic.js'),
+        meshnormal: path.resolve(__dirname, '../src/meshnormal.js'),
+        meshstandard: path.resolve(__dirname, '../src/meshstandard.js'),
     },
     output:
     {
@@ -29,18 +43,7 @@ module.exports = {
             filename:"index.html",
             excludeChunks: ['basic', 'material']
         }),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/basic.html'),
-            minify: true,
-            chunks: ['basic'],
-            filename:"basic.html"
-        }),
-        new HtmlWebpackPlugin({
-            template: path.resolve(__dirname, '../src/material.html'),
-            minify: true,
-            chunks: ['material'],
-            filename:"material.html"
-        }),
+        ...htmlPageNames,
         new MiniCSSExtractPlugin()
     ],
     module:
